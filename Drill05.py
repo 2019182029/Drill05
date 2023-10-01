@@ -30,7 +30,11 @@ while(running) :
         clear_canvas()
 
         ground.draw(ground_width // 2, ground_height // 2)
-        character.clip_draw(frame * 100, 0, 100, 100, cha_x, cha_y)
+
+        if(cha_x <= hand_x) :
+            character.clip_draw(frame * 100, 0, 100, 100, cha_x, cha_y)
+        elif(cha_x >= hand_x) :
+            character.clip_composite_draw(frame * 100, 0, 100, 100, 0, 'h', cha_x, cha_y, 100, 100)
 
         if((hand_x, hand_y) == (cha_x, cha_y)) :
             hand_x, hand_y = random.randint(0, ground_width), random.randint(0, ground_height)
